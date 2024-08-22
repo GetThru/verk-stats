@@ -37,11 +37,11 @@ defmodule VerkStatsTest do
 
   test "job succeeded stats" do
     now = DateTime.utc_now()
-    unix_now = now |> DateTime.to_unix(:milliseconds)
+    unix_now = now |> DateTime.to_unix(:millisecond)
 
     enqueued_at = unix_now / 1000
-    started_at = DateTime.from_unix!(unix_now + 5000, :milliseconds)
-    finished_at = DateTime.from_unix!(unix_now + 10000, :milliseconds)
+    started_at = DateTime.from_unix!(unix_now + 5000, :millisecond)
+    finished_at = DateTime.from_unix!(unix_now + 10000, :millisecond)
 
     job = %Job{
       queue: "test_queue",
@@ -64,10 +64,10 @@ defmodule VerkStatsTest do
 
   test "job failure stats" do
     now = DateTime.utc_now()
-    unix_now = now |> DateTime.to_unix(:milliseconds)
+    unix_now = now |> DateTime.to_unix(:millisecond)
 
     started_at = now
-    finished_at = DateTime.from_unix!(unix_now + 7000, :milliseconds)
+    finished_at = DateTime.from_unix!(unix_now + 7000, :millisecond)
     job = %Job{queue: "test_queue", class: "DummyWorker", args: [1, 2, 3]}
     event = %JobFailed{job: job, started_at: started_at, failed_at: finished_at}
     :ok = Verk.EventProducer.async_notify(event)

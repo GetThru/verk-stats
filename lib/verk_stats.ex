@@ -41,7 +41,7 @@ defmodule VerkStats do
       sink.collect(
         :timing,
         "jobs.success",
-        DateTime.diff(finished_at, started_at, :milliseconds),
+        DateTime.diff(finished_at, started_at, :millisecond),
         tags
       )
 
@@ -51,7 +51,7 @@ defmodule VerkStats do
       sink.collect(
         :timing,
         "jobs.success.total_time",
-        DateTime.diff(finished_at, enqueued_at, :milliseconds),
+        DateTime.diff(finished_at, enqueued_at, :millisecond),
         tags
       )
 
@@ -63,7 +63,7 @@ defmodule VerkStats do
       sink.collect(
         :timing,
         "jobs.failure",
-        DateTime.diff(failed_at, started_at, :milliseconds),
+        DateTime.diff(failed_at, started_at, :millisecond),
         tags(job)
       )
 
